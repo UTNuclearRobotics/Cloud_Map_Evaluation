@@ -140,6 +140,9 @@ public:
         gt_mesh_filtered.reset(new Mesh());
         est_mesh_filtered.reset(new Mesh());
 
+        // Skip logging results
+        if (!param_.save_immediate_result_) { return; }
+
         // Determine subfolder name based on the PCD file name
         if (param_.pcd_file_name_ == "merged_maps_all_trans.pcd") {
             subfolder = "merged_maps_all_results/";
@@ -151,7 +154,7 @@ public:
             subfolder = "map_results/";
         } else {
             subfolder = "map_results/";
-            std::cerr << "ERROR: Invalid PCD file name: " << param_.pcd_file_name_ << std::endl;
+            std::cerr << "INFO: Default PCD file name: " << param_.pcd_file_name_ << std::endl;
         }
 
         // Set the directory path for saving results

@@ -211,9 +211,9 @@ Param loadParametersFromYAML(const std::string& yaml_file_path) {
 int main(int argc, char **argv) {
     // Set default config file or use command line argument
     std::string config_file = "../config/config.yaml";
-    //    if (argc > 1) {
-    //        config_file = argv[1];
-    //    }
+    if (argc > 1) {
+        config_file = argv[1];
+    }
 
     std::cout << "Loading configuration from: " << config_file << "\n";
     

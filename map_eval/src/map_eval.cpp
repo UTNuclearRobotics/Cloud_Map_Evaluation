@@ -1713,7 +1713,8 @@ double MapEval::ComputeMeanMapEntropyUsingNormalTBB(
                                    radius, total_points, param_.enable_debug);
     
     // Execute parallel reduction with optimal grain size
-    const int grain_size = std::max(1, total_points / (8 * static_cast<int>(std::thread::hardware_concurrency())));
+    int num_threads = std::max(1, static_cast<int>(std::thread::hardware_concurrency() - 2)); // leave 2 cores free
+    const int grain_size = std::max(1, total_points / (8 * num_threads));
     tbb::parallel_reduce(tbb::blocked_range<int>(0, total_points, grain_size), entropy_comp);
     
     // Compute final mean entropy
