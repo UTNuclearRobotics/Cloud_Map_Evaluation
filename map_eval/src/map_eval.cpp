@@ -324,7 +324,7 @@ void MapEval::calculateVMD() {
     double mean_ws = std::accumulate(ws_distances.begin(), ws_distances.end(), 0.0) / ws_distances.size();
     vmd = mean_ws;
     t_vmd = ticToc.toc();  // Timing VMD calculation
-    std::cout << "INFO: Calculated VMD: " << mean_ws << std::endl;
+    std::cout << "INFO: VMD: " << mean_ws << std::endl;
 
     // Optional: Calculate and report CDF of Wasserstein distances
     std::sort(ws_distances.begin(), ws_distances.end());
@@ -386,7 +386,7 @@ void MapEval::calculateVMD() {
 
     scs_overall = total_scs / scs_count;
     t_scs = ticToc.toc();  // Timing SCS calculation
-    std::cout << "INFO: Spatial Consistency Score (SCS): " << scs_overall << std::endl;
+    std::cout << "INFO: SCS: " << scs_overall << std::endl;
 }
 
 void MapEval::saveMmeResults() {
@@ -1161,7 +1161,7 @@ void MapEval::calculateMetrics(pipelines::registration::RegistrationResult &regi
     std::cout << "INFO: RMSE/AC: " << est_gt_results.at(1).transpose() << std::endl;
     // std::cout << "INFO: Mean error: " << est_gt_results.at(0).transpose() << std::endl;
     // std::cout << "INFO: Standard deviation: " << est_gt_results.at(3).transpose() << std::endl;
-    std::cout << "INFO: Fitness/Overlap: " << est_gt_results.at(2).transpose() << std::endl;
+    std::cout << "INFO: Comp: " << est_gt_results.at(2).transpose() << std::endl;
 
     // F1 Score and Chamfer Distance
     f1_vec = Vector5d::Zero();
@@ -1194,7 +1194,7 @@ void MapEval::calculateMetrics(pipelines::registration::RegistrationResult &regi
     full_chamfer_dist = computeChamferDistance(*map_3d_, *gt_3d_);
     t_fcd = ticToc1.toc() / 1000.0;
 
-    std::cout << "INFO: Full Chamfer distance: " << full_chamfer_dist << std::endl;
+    std::cout << "INFO: FULL CD: " << full_chamfer_dist << std::endl;
 
     if (param_.enable_debug) {
         std::cout << "INFO: Chamfer distance calculation took: " << t_fcd << " [s]" << std::endl;
